@@ -1,0 +1,12 @@
+int id = @ptnum; //getting ID
+
+vector up = chv("Up_vector");
+float time = chf("Time");
+float norm_time = fit(time, chf("Start"), chf("end"), 0, 1);
+float norm_remap_time = chramp("time_remap", (norm_time/2 - 0.5) + random(id)/2);
+float rnd_speed = random(id);
+vector rnd_axis = sample_sphere_uniform(@rest);
+vector rnd_noise_axis = rnd_axis + chf("noise_amp") * (xnoise(time*chf("direction_var_speed")+float(id))-{0.5,0.5,0.5});
+
+vector4 rotation_quaternion = quaternion(norm_remap_time * rnd_speed * chf("speed"), rnd_noise_axis);
+p@orient = qmultiply(p@orient, rotation_quaternion);
