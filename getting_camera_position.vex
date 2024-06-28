@@ -1,0 +1,8 @@
+//This method is a super easy and fancy VEX solution.
+
+//Make a point, however you like, maybe with an add node?
+//Append a Point Wrangle, and in it type the following: 
+string camera = chs("camera_path"); @P = ptransform(camera, "space:current", {0,0,0}); @N = ntransform(camera, "space:current", {0,0,-1});
+//Now, I made the camera string a channel so you can easily use Houdini’s interface to point to the Alembic camera you are looking for. And done! That’s all you need to do. What’s happening here with the ptransform() function is that you are grabbing the camera transforms (obscured by Alembic’s voodoo) and putting them in the current space, and for orientation, you use ntransform(), since through N you can give the point some orientation. 
+
+//If you wanna know more about the ptransform() and ntransform() functions, you can take a look at what they do here and here, respectively. 
