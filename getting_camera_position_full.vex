@@ -1,0 +1,11 @@
+vector @cdir;
+vector @raydir;
+ 
+matrix camMatrix = optransform(chs("camera")); 
+//get a matrix with the camera's transforms.
+ 
+@cdir = cracktransform(0, 0, 0, {0,0,0}, camMatrix);
+//extract out the camera position as a vector
+ 
+@raydir = normalize(@P-@cdir);
+//get a vector to project pointo from camera
